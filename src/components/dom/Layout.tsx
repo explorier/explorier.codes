@@ -1,7 +1,13 @@
-import { useRef, forwardRef } from 'react'
+import { useRef, forwardRef, ReactNode } from 'react'
 import { mergeRefs } from 'react-merge-refs'
 
-const Layout = forwardRef(({ children, ...props }, ref) => {
+interface Props {
+    children?: ReactNode;
+}
+
+export type Ref = HTMLDivElement;
+
+const Layout = forwardRef<Ref, Props>(({ children, ...props }, ref) => {
   const localRef = useRef()
   return (
     <div
@@ -11,6 +17,7 @@ const Layout = forwardRef(({ children, ...props }, ref) => {
     </div>
   )
 })
+
 Layout.displayName = 'Layout'
 
 export default Layout
